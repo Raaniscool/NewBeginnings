@@ -1,0 +1,41 @@
+{
+  "name": "cloze_continuity_v1",
+  "created": "2026-09-19",
+  "policy": "FIXED probes. Binary (chance = 0.5). Tests whether the model keeps the entity introduced earlier in the passage instead of drifting. Never add these exact sentences to any training corpus.",
+  "probes": [
+    {"context": "Sarah is a doctor. ", "choices": ["She works in a hospital.", "He works in a hospital."], "answer_index": 0, "tags": ["pronoun_gender"]},
+    {"context": "Mr. Reed was very tired. ", "choices": ["He had worked all night.", "She had worked all night."], "answer_index": 0, "tags": ["pronoun_gender"]},
+    {"context": "Emma picked up the red ball. ", "choices": ["She put the ball in the basket.", "He put the ball in the basket."], "answer_index": 0, "tags": ["pronoun_gender"]},
+    {"context": "Uncle Dan told us a funny story. ", "choices": ["He made everyone laugh.", "She made everyone laugh."], "answer_index": 0, "tags": ["pronoun_gender"]},
+    {"context": "My aunt is a pilot. ", "choices": ["She flies to many countries.", "He flies to many countries."], "answer_index": 0, "tags": ["pronoun_gender"]},
+    {"context": "The baby was hungry. ", "choices": ["It cried loudly.", "They cried loudly."], "answer_index": 0, "tags": ["number"]},
+    {"context": "My parents are on holiday. ", "choices": ["They went to the mountains.", "She went to the mountains."], "answer_index": 0, "tags": ["number"]},
+    {"context": "The three students finished the test. ", "choices": ["They left the room quietly.", "He left the room quietly."], "answer_index": 0, "tags": ["number"]},
+    {"context": "The red ball rolled under the chair. ", "choices": ["It was hard to see.", "They were hard to see."], "answer_index": 0, "tags": ["number"]},
+    {"context": "The two brothers opened a shop. ", "choices": ["They sold bread and cheese.", "He sold bread and cheese."], "answer_index": 0, "tags": ["number"]},
+    {"context": "The cat drank the milk. ", "choices": ["It then slept in the sun.", "They then slept in the sun."], "answer_index": 0, "tags": ["animacy"]},
+    {"context": "The bridge is very old. ", "choices": ["It was built a century ago.", "He was built a century ago."], "answer_index": 0, "tags": ["animacy"]},
+    {"context": "A big oak tree grew in the yard. ", "choices": ["It gave us shade in summer.", "She gave us shade in summer."], "answer_index": 0, "tags": ["animacy"]},
+    {"context": "My grandmother keeps a small garden. ", "choices": ["She waters the plants every morning.", "It waters the plants every morning."], "answer_index": 0, "tags": ["animacy"]},
+
+    {"context": "I bought a new lamp yesterday. The ", "choices": ["lamp is on my desk now.", "chair is on my desk now."], "answer_index": 0, "tags": ["entity_remention"]},
+    {"context": "A purple kite flew over the beach. People watched the ", "choices": ["kite until it disappeared.", "mountain until it disappeared."], "answer_index": 0, "tags": ["entity_remention"]},
+    {"context": "She poured hot tea into the cup. The ", "choices": ["tea smelled wonderful.", "table smelled wonderful."], "answer_index": 0, "tags": ["entity_remention"]},
+    {"context": "There was a loud crash in the kitchen. The ", "choices": ["noise woke up the baby.", "garden woke up the baby."], "answer_index": 0, "tags": ["entity_remention"]},
+    {"context": "The ship reached the harbor at dawn. The captain of the ", "choices": ["ship gave the order to drop anchor.", "hotel gave the order to drop anchor."], "answer_index": 0, "tags": ["entity_remention"]},
+    {"context": "We waited two hours at the airport. Finally, the ", "choices": ["flight was announced.", "movie was announced."], "answer_index": 0, "tags": ["entity_remention"]},
+    {"context": "The farmers were worried about the drought. Without rain, the ", "choices": ["crops would die.", "cars would die."], "answer_index": 0, "tags": ["entity_remention"]},
+    {"context": "Tom gave Sam a gift for his birthday. Sam thanked ", "choices": ["Tom warmly.", "himself warmly."], "answer_index": 0, "tags": ["entity_remention"]},
+
+    {"context": "He opened the window because the room was ", "choices": ["stuffy and hot.", "freezing and empty."], "answer_index": 0, "tags": ["context_consistency"]},
+    {"context": "She wore a heavy coat because the day was ", "choices": ["cold and windy.", "hot and sunny."], "answer_index": 0, "tags": ["context_consistency"]},
+    {"context": "The boy could not reach the shelf because he was too ", "choices": ["short.", "tall."], "answer_index": 0, "tags": ["context_consistency"]},
+    {"context": "The soup was too hot to eat, so we", "choices": [" waited for it to cool.", " put ice on the floor."], "answer_index": 0, "tags": ["context_consistency"]},
+    {"context": "The library was very quiet because people were ", "choices": ["reading and studying.", "shouting and dancing."], "answer_index": 0, "tags": ["context_consistency"]},
+    {"context": "After running ten laps, the athlete was", "choices": [" tired and thirsty.", " fresh and rested."], "answer_index": 0, "tags": ["context_consistency"]},
+    {"context": "The streets were empty at midnight because most people were", "choices": [" asleep in their homes.", " shopping in the market."], "answer_index": 0, "tags": ["context_consistency"]},
+    {"context": "The glass broke when it hit the floor because glass is", "choices": [" fragile.", " soft."], "answer_index": 0, "tags": ["context_consistency"]},
+    {"context": "Nobody at the picnic ate the burned bread because it was", "choices": [" ruined.", " delicious."], "answer_index": 0, "tags": ["context_consistency"]},
+    {"context": "The marathon runner drank a lot of water because she was", "choices": [" very thirsty.", " not thirsty at all."], "answer_index": 0, "tags": ["context_consistency"]}
+  ]
+}

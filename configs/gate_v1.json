@@ -1,0 +1,23 @@
+{
+  "floors": {
+    "continuity_cloze_min": 0.75,
+    "distinct2_min": 0.6,
+    "double_word_max": 0.01,
+    "first_rep3_min": 32,
+    "grammar_cloze_min": 0.8,
+    "question_mark_min": 0.8,
+    "rep3_max": 0.1,
+    "terminal_punct_min": 0.95,
+    "test_ppl_max": 45.0,
+    "worst_cat_distinct2_min": 0.5,
+    "worst_cat_rep3_max": 0.15
+  },
+  "improvement_rule": {
+    "min_held_or_improved": 8,
+    "require_strict_test_ppl_improve": true,
+    "require_cloze_not_regress": true
+  },
+  "notes": "Gate v1.0; rationale for each floor is written in ENGLISH_GATE.md. v1 can never pass (baseline rule).",
+  "pinned_decode_config": "configs/gate_decode.json",
+  "version": "1.0"
+}

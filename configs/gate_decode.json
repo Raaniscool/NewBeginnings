@@ -1,0 +1,9 @@
+{
+  "max_new_tokens": 96,
+  "name": "gate_pinned",
+  "repetition_penalty": 1.0,
+  "seed": 99,
+  "temperature": 0.8,
+  "top_k": 0,
+  "top_p": 1.0
+}
