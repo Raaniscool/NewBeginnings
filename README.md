@@ -51,14 +51,20 @@ run.py          single CLI entry point for everything
 ## Quick start
 
 ```bash
-pip install -r requirements.txt
+bash scripts/setup_env.sh              # lean CPU-only torch (~0.6GB total;
+                                       # avoids multi-GB CUDA wheels via
+                                       # PyPI --no-deps + libstdc++ preload shim)
+pytest -q                              # run the full test suite (incl. overfit test)
+python3 run.py storage                 # storage accounting (disk is a constraint)
 python3 run.py build-corpus            # assemble + dedupe the English corpus
 python3 run.py train-tokenizer         # train BPE on the *train split only*
 python3 run.py build-dataset           # tokenize into train/val/test arrays
-pytest -q                              # run the full test suite
 python3 run.py train --config configs/v1_train.json
-python3 run.py benchmark --version v1  # run the fixed English benchmark
+python3 run.py eval-test --version v1  # held-out test perplexity
+python3 run.py benchmark --version v1  # fixed English benchmark suite
+python3 run.py cloze --version v1      # grammar + continuity probes
 python3 run.py gate --version v1       # evaluate the English Mastery Gate
+python3 run.py report --version v1     # full milestone report
 ```
 
 ## Rules this repository enforces on itself
