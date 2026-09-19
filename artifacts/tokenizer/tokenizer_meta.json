@@ -1,0 +1,10 @@
+{
+  "vocab_size": 6502,
+  "sha256": "effb3c27fc74a875785b46df575d2625380ac6d34243d659f6b71ec81df86659",
+  "special_tokens": [
+    "<|bos|>",
+    "<|eos|>",
+    "<|pad|>"
+  ],
+  "note": "byte-level BPE trained from scratch on the TRAIN split only"
+}

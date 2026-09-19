@@ -3,45 +3,478 @@
   "created": "2026-09-19",
   "policy": "FIXED probes. Each is binary (chance = 0.5). Score by summed next-token log-probs of each candidate continuation. Never add these exact sentences to any training corpus.",
   "probes": [
-    {"context": "The dog ", "choices": ["runs in the yard.", "run in the yard."], "answer_index": 0, "tags": ["agreement"]},
-    {"context": "The dogs ", "choices": ["run in the yard.", "runs in the yard."], "answer_index": 0, "tags": ["agreement"]},
-    {"context": "She ", "choices": ["goes to school every day.", "go to school every day."], "answer_index": 0, "tags": ["agreement"]},
-    {"context": "They ", "choices": ["go to school every day.", "goes to school every day."], "answer_index": 0, "tags": ["agreement"]},
-    {"context": "He does not ", "choices": ["like coffee.", "likes coffee."], "answer_index": 0, "tags": ["agreement"]},
-    {"context": "My friends ", "choices": ["are very kind.", "is very kind."], "answer_index": 0, "tags": ["agreement"]},
-    {"context": "The cat ", "choices": ["sits on the mat.", "sit on the mat."], "answer_index": 0, "tags": ["agreement"]},
-    {"context": "The cats ", "choices": ["sit on the mat.", "sits on the mat."], "answer_index": 0, "tags": ["agreement"]},
-    {"context": "Each of the girls ", "choices": ["has a book.", "have a book."], "answer_index": 0, "tags": ["agreement"]},
-    {"context": "Neither answer ", "choices": ["is right.", "are right."], "answer_index": 0, "tags": ["agreement"]},
-    {"context": "There ", "choices": ["are three apples on the table.", "is three apples on the table."], "answer_index": 0, "tags": ["agreement"]},
-    {"context": "There ", "choices": ["is one apple left.", "are one apple left."], "answer_index": 0, "tags": ["agreement"]},
-    {"context": "This pair of shoes ", "choices": ["is new.", "are new."], "answer_index": 0, "tags": ["agreement"]},
-    {"context": "These books ", "choices": ["are heavy.", "is heavy."], "answer_index": 0, "tags": ["agreement"]},
-
-    {"context": "Yesterday, she ", "choices": ["went to the market.", "goes to the market."], "answer_index": 0, "tags": ["tense"]},
-    {"context": "Last year, we ", "choices": ["traveled to Spain.", "travel to Spain."], "answer_index": 0, "tags": ["tense"]},
-    {"context": "Tomorrow, they ", "choices": ["will play the game.", "played the game."], "answer_index": 0, "tags": ["tense"]},
-    {"context": "She has already ", "choices": ["eaten her lunch.", "eat her lunch."], "answer_index": 0, "tags": ["tense"]},
-    {"context": "When I was a child, I ", "choices": ["lived by the sea.", "live by the sea."], "answer_index": 0, "tags": ["tense"]},
-    {"context": "Next week, my sister ", "choices": ["is starting a new job.", "started a new job."], "answer_index": 0, "tags": ["tense"]},
-    {"context": "He has never ", "choices": ["seen the ocean.", "saw the ocean."], "answer_index": 0, "tags": ["tense"]},
-    {"context": "While she was walking home, it ", "choices": ["began to rain.", "begins to rain."], "answer_index": 0, "tags": ["tense"]},
-
-    {"context": "Maria forgot ", "choices": ["her umbrella at home.", "his umbrella at home."], "answer_index": 0, "tags": ["pronoun"]},
-    {"context": "John lost ", "choices": ["his keys in the park.", "her keys in the park."], "answer_index": 0, "tags": ["pronoun"]},
-    {"context": "The dog wagged ", "choices": ["its tail happily.", "their tail happily."], "answer_index": 0, "tags": ["pronoun"]},
-    {"context": "The children did ", "choices": ["their homework after dinner.", "its homework after dinner."], "answer_index": 0, "tags": ["pronoun"]},
-    {"context": "That pen belongs to me. It is ", "choices": ["mine.", "my."], "answer_index": 0, "tags": ["pronoun"]},
-    {"context": "Mrs. Lane is kind. Everyone likes ", "choices": ["her very much.", "him very much."], "answer_index": 0, "tags": ["pronoun"]},
-    {"context": "The old tree lost ", "choices": ["its leaves in autumn.", "their leaves in autumn."], "answer_index": 0, "tags": ["pronoun"]},
-
-    {"context": "I saw ", "choices": ["an owl in the tree.", "a owl in the tree."], "answer_index": 0, "tags": ["article"]},
-    {"context": "She is ", "choices": ["an honest woman.", "a honest woman."], "answer_index": 0, "tags": ["article"]},
-    {"context": "She is taller ", "choices": ["than her brother.", "then her brother."], "answer_index": 0, "tags": ["function_word"]},
-    {"context": "It depends ", "choices": ["on the weather.", "in the weather."], "answer_index": 0, "tags": ["function_word"]},
-    {"context": "She apologized ", "choices": ["for being late.", "about being late."], "answer_index": 0, "tags": ["function_word"]},
-    {"context": "We are looking forward ", "choices": ["to your visit.", "for your visit."], "answer_index": 0, "tags": ["function_word"]},
-    {"context": "He is very good ", "choices": ["at swimming.", "in swimming."], "answer_index": 0, "tags": ["function_word"]},
-    {"context": "I don't know ", "choices": ["anything about it.", "nothing about it."], "answer_index": 0, "tags": ["function_word"]}
+    {
+      "context": "The dog ",
+      "choices": [
+        "runs in the yard.",
+        "run in the yard."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "agreement"
+      ]
+    },
+    {
+      "context": "The dogs ",
+      "choices": [
+        "run in the yard.",
+        "runs in the yard."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "agreement"
+      ]
+    },
+    {
+      "context": "She ",
+      "choices": [
+        "goes to school every day.",
+        "go to school every day."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "agreement"
+      ]
+    },
+    {
+      "context": "They ",
+      "choices": [
+        "go to school every day.",
+        "goes to school every day."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "agreement"
+      ]
+    },
+    {
+      "context": "He does not ",
+      "choices": [
+        "like coffee.",
+        "likes coffee."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "agreement"
+      ]
+    },
+    {
+      "context": "My friends ",
+      "choices": [
+        "are very kind.",
+        "is very kind."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "agreement"
+      ]
+    },
+    {
+      "context": "The cat ",
+      "choices": [
+        "sits on the mat.",
+        "sit on the mat."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "agreement"
+      ]
+    },
+    {
+      "context": "The cats ",
+      "choices": [
+        "sit on the mat.",
+        "sits on the mat."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "agreement"
+      ]
+    },
+    {
+      "context": "Each of the girls ",
+      "choices": [
+        "has a book.",
+        "have a book."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "agreement"
+      ]
+    },
+    {
+      "context": "Neither answer ",
+      "choices": [
+        "is right.",
+        "are right."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "agreement"
+      ]
+    },
+    {
+      "context": "There ",
+      "choices": [
+        "are three apples on the table.",
+        "is three apples on the table."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "agreement"
+      ]
+    },
+    {
+      "context": "There ",
+      "choices": [
+        "is one apple left.",
+        "are one apple left."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "agreement"
+      ]
+    },
+    {
+      "context": "This pair of shoes ",
+      "choices": [
+        "is new.",
+        "are new."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "agreement"
+      ]
+    },
+    {
+      "context": "These books ",
+      "choices": [
+        "are heavy.",
+        "is heavy."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "agreement"
+      ]
+    },
+    {
+      "context": "Yesterday, she ",
+      "choices": [
+        "went to the market.",
+        "goes to the market."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "tense"
+      ]
+    },
+    {
+      "context": "Last year, we ",
+      "choices": [
+        "traveled to Spain.",
+        "travel to Spain."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "tense"
+      ]
+    },
+    {
+      "context": "Tomorrow, they ",
+      "choices": [
+        "will play the game.",
+        "played the game."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "tense"
+      ]
+    },
+    {
+      "context": "She has already ",
+      "choices": [
+        "eaten her lunch.",
+        "eat her lunch."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "tense"
+      ]
+    },
+    {
+      "context": "When I was a child, I ",
+      "choices": [
+        "lived by the sea.",
+        "live by the sea."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "tense"
+      ]
+    },
+    {
+      "context": "Next week, my sister ",
+      "choices": [
+        "is starting a new job.",
+        "started a new job."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "tense"
+      ]
+    },
+    {
+      "context": "He has never ",
+      "choices": [
+        "seen the ocean.",
+        "saw the ocean."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "tense"
+      ]
+    },
+    {
+      "context": "While she was walking home, it ",
+      "choices": [
+        "began to rain.",
+        "begins to rain."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "tense"
+      ]
+    },
+    {
+      "context": "Maria forgot ",
+      "choices": [
+        "her umbrella at home.",
+        "his umbrella at home."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "pronoun"
+      ]
+    },
+    {
+      "context": "John lost ",
+      "choices": [
+        "his keys in the park.",
+        "her keys in the park."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "pronoun"
+      ]
+    },
+    {
+      "context": "The dog wagged ",
+      "choices": [
+        "its tail happily.",
+        "their tail happily."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "pronoun"
+      ]
+    },
+    {
+      "context": "The children did ",
+      "choices": [
+        "their homework after dinner.",
+        "its homework after dinner."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "pronoun"
+      ]
+    },
+    {
+      "context": "That pen belongs to me. It is ",
+      "choices": [
+        "mine.",
+        "my."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "pronoun"
+      ]
+    },
+    {
+      "context": "Mrs. Lane is kind. Everyone likes ",
+      "choices": [
+        "her very much.",
+        "him very much."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "pronoun"
+      ]
+    },
+    {
+      "context": "The old tree lost ",
+      "choices": [
+        "its leaves in autumn.",
+        "their leaves in autumn."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "pronoun"
+      ]
+    },
+    {
+      "context": "I saw ",
+      "choices": [
+        "an owl in the tree.",
+        "a owl in the tree."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "article"
+      ]
+    },
+    {
+      "context": "She is ",
+      "choices": [
+        "an honest woman.",
+        "a honest woman."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "article"
+      ]
+    },
+    {
+      "context": "She is taller ",
+      "choices": [
+        "than her brother.",
+        "then her brother."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "function_word"
+      ]
+    },
+    {
+      "context": "It depends ",
+      "choices": [
+        "on the weather.",
+        "in the weather."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "function_word"
+      ]
+    },
+    {
+      "context": "She apologized ",
+      "choices": [
+        "for being late.",
+        "about being late."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "function_word"
+      ]
+    },
+    {
+      "context": "We are looking forward ",
+      "choices": [
+        "to your visit.",
+        "for your visit."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "function_word"
+      ]
+    },
+    {
+      "context": "He is very good ",
+      "choices": [
+        "at swimming.",
+        "in swimming."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "function_word"
+      ]
+    },
+    {
+      "context": "I don't know ",
+      "choices": [
+        "anything about it.",
+        "nothing about it."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "function_word"
+      ]
+    },
+    {
+      "context": "We ",
+      "choices": [
+        "are going to the beach tomorrow.",
+        "is going to the beach tomorrow."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "agreement"
+      ]
+    },
+    {
+      "context": "The cake ",
+      "choices": [
+        "was baked by my aunt.",
+        "were baked by my aunt."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "agreement"
+      ]
+    },
+    {
+      "context": "Those shoes ",
+      "choices": [
+        "are too small for me.",
+        "is too small for me."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "agreement"
+      ]
+    },
+    {
+      "context": "A flock of birds ",
+      "choices": [
+        "was seen over the field.",
+        "were seen over the field."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "agreement"
+      ]
+    },
+    {
+      "context": "My brother ",
+      "choices": [
+        "does not eat meat.",
+        "does not eats meat."
+      ],
+      "answer_index": 0,
+      "tags": [
+        "agreement"
+      ]
+    },
+    {
+      "context": "It's time to go. We should hurry, ",
+      "choices": [
+        "shouldn't we?",
+        "shouldn't us?"
+      ],
+      "answer_index": 0,
+      "tags": [
+        "function_word"
+      ]
+    }
   ]
 }

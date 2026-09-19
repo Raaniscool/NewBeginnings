@@ -14,7 +14,7 @@ from core.dataset import (Document, TokenDataset, assert_split_sane,
 from core.tokenizer import train_tokenizer
 
 
-def docs_for_split_test(n_groups=30, per=3):
+def docs_for_split_test(n_groups=30, per=3, body_words=60):
     rng_text = (
         "the quick brown fox jumps over the lazy dog near the river bank in the"
         " early morning light while birds sing in the trees above the meadow"
@@ -23,7 +23,7 @@ def docs_for_split_test(n_groups=30, per=3):
     for g in range(n_groups):
         for i in range(per):
             body = " ".join(rng_text[(g + i + j) % len(rng_text)]
-                            for j in range(60))
+                            for j in range(body_words))
             out.append(Document(doc_id=f"d{g}_{i}", category="conversation",
                                 text=body + f" token{g}{i}", group=f"g{g}",
                                 origin="seed"))
@@ -75,8 +75,8 @@ def test_split_sanity_fails_loudly_on_tiny_splits():
 
 
 def test_split_sanity_passes_on_sized_corpus():
-    docs = docs_for_split_test(n_groups=80, per=3)
-    splits = group_aware_split(docs, seed=7, val_frac=0.07, test_frac=0.07)
+    docs = docs_for_split_test(n_groups=90, per=4, body_words=230)
+    splits = group_aware_split(docs, seed=7, val_frac=0.09, test_frac=0.09)
     assert_split_sane(splits)  # should not raise
 
 

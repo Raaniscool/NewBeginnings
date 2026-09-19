@@ -204,7 +204,7 @@ class Trainer:
                            "tokens_per_sec": round(tps), "elapsed_s": round(now - t_start, 1)}
                     self._log(rec)
                     print(f"step {self.step:>6}/{self.max_steps} | lr {lr:.2e} | "
-                          f"loss {float(loss):.3f} | {tps:.0f} tok/s", flush=True)
+                          f"loss {float(loss.detach()):.3f} | {tps:.0f} tok/s", flush=True)
 
                 if self.step % cfg.eval_interval == 0 or self.step == self.max_steps:
                     val = self.evaluate("val", cfg.eval_iters)
