@@ -1,11 +1,17 @@
 # Core dependencies for NewBeginnings (Phase 1).
-# Install with: pip install -r requirements.txt
-# (PyTorch here is the standard PyPI wheel; CPU-only usage.)
-torch>=2.2,<3.0
-numpy>=1.26,<2.4
-tokenizers>=0.15,<0.23
-pytest>=8.0,<9.0
-# torch runtime dependencies (needed when torch is installed with --no-deps)
+#
+# IMPORTANT (storage policy, CPU-only): torch on PyPI declares several GB of
+# nvidia-* / cuda-toolkit / triton dependencies. This project NEVER uses the
+# GPU. Install via scripts/setup_env.sh, which installs torch with --no-deps
+# and satisfies its CUDA library links with tiny generated stub libs instead.
+# Do NOT run a plain `pip install torch` on this project's environment.
+#
+# torch is installed via scripts/setup_env.sh with --no-deps:
+torch==2.14.0
+numpy>=1.26,<3
+tokenizers>=0.15,<0.24
+pytest>=8,<10
+# torch python-level runtime dependencies (present because torch has --no-deps)
 filelock
 typing-extensions
 sympy
