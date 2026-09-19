@@ -46,7 +46,7 @@ def tiny_setup(tmp_path_factory):
     return tmp, tok
 
 
-def make_trainer(tmp, max_steps, seed=1234):
+def make_trainer(tmp, max_steps, tok, seed=1234):
     tcfg = TrainConfig(
         version="test", seed=seed, batch_size=8, block_size=24, epochs=1,
         max_steps=max_steps, learning_rate=3e-3, min_lr_frac=0.1,
@@ -55,7 +55,7 @@ def make_trainer(tmp, max_steps, seed=1234):
         ckpt_dir=str(tmp / "ckpt"), data_dir=str(tmp),
         run_dir=str(tmp / "run"), model_config_path="",
     )
-    mcfg = ModelConfig(vocab_size=220, block_size=24, n_layer=2, n_head=4,
+    mcfg = ModelConfig(vocab_size=tok.vocab_size, block_size=24, n_layer=2, n_head=4,
                        d_model=48, dropout=0.0, bias=False)
     set_seed(seed)
     model = GPT(mcfg)
@@ -68,7 +68,7 @@ def test_checkpoint_contains_everything_and_retention(tiny_setup, tmp_path):
     work = tmp_path / "w1"
     work.mkdir()
     # reuse module-scope token files by pointing data_dir at tmp dir
-    trainer, tcfg = make_trainer(tmp, max_steps=6)
+    trainer, tcfg = make_trainer(tmp, max_steps=6, tok=tok)
     trainer.cfg.ckpt_dir = str(tmp_path / "ck")
     trainer.cfg.run_dir = str(tmp_path / "rn")
     Path(trainer.cfg.ckpt_dir).mkdir()
@@ -88,15 +88,15 @@ def test_checkpoint_contains_everything_and_retention(tiny_setup, tmp_path):
 
 
 def test_resume_continues_from_saved_step(tiny_setup, tmp_path):
-    tmp, _ = tiny_setup
-    t1, _ = make_trainer(tmp, max_steps=8)
+    tmp, t = tiny_setup
+    t1, _ = make_trainer(tmp, max_steps=8, tok=t)
     t1.cfg.ckpt_dir = str(tmp_path / "ckr"); Path(t1.cfg.ckpt_dir).mkdir()
     t1.cfg.run_dir = str(tmp_path / "rnr"); Path(t1.cfg.run_dir).mkdir()
     t1.log_path = Path(t1.cfg.run_dir) / "log.jsonl"
     t1.train()
     step_after_first = t1.step
     # new trainer continues the run
-    t2, _ = make_trainer(tmp, max_steps=16)
+    t2, _ = make_trainer(tmp, max_steps=16, tok=t)
     t2.load(Path(t1.cfg.ckpt_dir) / "last.ckpt")
     assert t2.step == step_after_first
     assert t2.max_steps == 16  # a resumed run may have a new target
@@ -107,7 +107,7 @@ def test_determinism_same_seed_same_loss_curve(tiny_setup, tmp_path):
     tmp, _ = tiny_setup
 
     def run_a_few(tag):
-        tr, _ = make_trainer(tmp, max_steps=6, seed=777)
+        tr, _ = make_trainer(tmp, max_steps=6, tok=tiny_setup[1], seed=777)
         tr.cfg.ckpt_dir = str(tmp_path / f"d{tag}c"); Path(tr.cfg.ckpt_dir).mkdir()
         tr.cfg.run_dir = str(tmp_path / f"d{tag}r"); Path(tr.cfg.run_dir).mkdir()
         tr.log_path = Path(tr.cfg.run_dir) / "log.jsonl"
@@ -126,7 +126,7 @@ def test_determinism_same_seed_same_loss_curve(tiny_setup, tmp_path):
 
 def test_lr_schedule_shape(tiny_setup):
     tmp, _ = tiny_setup
-    tr, tcfg = make_trainer(tmp, max_steps=100)
+    tr, tcfg = make_trainer(tmp, max_steps=100, tok=tiny_setup[1])
     assert tr.max_steps == 100
     assert tr.lr_at(0) < tr.lr_at(tcfg.warmup_steps)
     peak = tr.lr_at(tcfg.warmup_steps)
@@ -140,7 +140,7 @@ def test_lr_schedule_shape(tiny_setup):
 
 def test_log_file_written_and_parseable(tiny_setup, tmp_path):
     tmp, _ = tiny_setup
-    tr, _ = make_trainer(tmp, max_steps=10)
+    tr, _ = make_trainer(tmp, max_steps=10, tok=tiny_setup[1])
     tr.cfg.ckpt_dir = str(tmp_path / "lgc"); Path(tr.cfg.ckpt_dir).mkdir()
     tr.cfg.run_dir = str(tmp_path / "lgr"); Path(tr.cfg.run_dir).mkdir()
     tr.log_path = Path(tr.cfg.run_dir) / "log.jsonl"

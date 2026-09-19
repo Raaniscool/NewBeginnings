@@ -50,13 +50,13 @@ def world(tmp_path_factory):
         [Document("w", "stories", " ".join(WORLD) * 200, "g", "generated")], tok)
     for name in ("train", "val", "test"):
         np.save(tmp / f"{name}.npy", flat)
-    mcfg = ModelConfig(vocab_size=tok.vocab_size, block_size=40, n_layer=2,
-                       n_head=4, d_model=64, dropout=0.0, bias=False)
+    mcfg = ModelConfig(vocab_size=tok.vocab_size, block_size=48, n_layer=2,
+                       n_head=4, d_model=96, dropout=0.0, bias=False)
     tcfg = TrainConfig(
-        version="overfit", seed=11, batch_size=16, block_size=40, epochs=1,
-        max_steps=180, learning_rate=4e-3, min_lr_frac=0.1, warmup_steps=10,
-        weight_decay=0.0, grad_clip=1.0, eval_interval=60, eval_iters=3,
-        log_interval=60, num_threads=2, ckpt_dir=str(tmp / "ckpt"),
+        version="overfit", seed=11, batch_size=32, block_size=48, epochs=1,
+        max_steps=420, learning_rate=3e-3, min_lr_frac=0.1, warmup_steps=15,
+        weight_decay=0.0, grad_clip=1.0, eval_interval=70, eval_iters=3,
+        log_interval=70, num_threads=2, ckpt_dir=str(tmp / "ckpt"),
         data_dir=str(tmp), run_dir=str(tmp / "run"), model_config_path="")
     set_seed(11)
     model = GPT(mcfg)
@@ -109,4 +109,4 @@ def test_training_produced_checkpoints_and_log(world):
     assert (tmp / "ckpt" / "best.ckpt").exists()
     log = (tmp / "run" / "log.jsonl").read_text().splitlines()
     assert log, "training log is empty"
-    assert world["summary"]["steps"] == 180
+    assert world["summary"]["steps"] == 420

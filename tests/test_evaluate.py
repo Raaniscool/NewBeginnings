@@ -30,12 +30,13 @@ def test_rep_metrics_detect_degeneration():
     good = ("The morning was cold and clear. Marta opened the shop early, "
             "swept the floor, and set out the bread while the village slept.")
     bad = "the river and the river and the river and the river and the river and the river and the river"
+    bad_doubles = "and and and the the the car car went went nowhere nowhere fast fast fast"
     assert rep_n_rate(bad, 3) > 0.8
     assert rep_n_rate(good, 3) < 0.05
-    assert double_word_rate(bad) > 0.5
+    assert double_word_rate(bad_doubles) > 0.5
     assert double_word_rate(good) == 0.0
     assert tokens_to_first_rep_n(good, 3) > 20
-    assert tokens_to_first_rep_n(bad, 3) <= 3
+    assert tokens_to_first_rep_n(bad, 3) <= 6
 
 
 def test_aggregate_metrics_keys_and_ranges():

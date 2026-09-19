@@ -1149,33 +1149,310 @@ def formal_report(rng: random.Random) -> str:
 
 # ------------------------------------------------------------- registration --
 
+# ------------------------------------------------------------------ stories --
+# Short original narratives. With public-domain downloads unavailable, the
+# story slice of the corpus must come from authored text; these families are
+# designed for surface variety: different frames, names, places, objects,
+# weather and outcomes per sample.
+
+STORY_FRAMES = [
+    "lost_and_found", "first_day", "small_kindness", "weather_trouble",
+    "the_fix", "the_mistake", "neighbors", "the_journey",
+]
+
+@family("story_found_object")
+def story_found_object(rng: random.Random) -> str:
+    name = rng.choice(FIRST_NAMES)
+    place = rng.choice(PLACES)
+    obj = rng.choice(["a brass key", "a leather notebook", "an old photograph",
+                      "a silver thimble", "a wooden whistle", "a folded map",
+                      "a tin of coins", "a child's red mitten", "a train ticket",
+                      "a fountain pen", "a small carved bird", "a paper boat"])
+    where = rng.choice(["under the third stair", "behind the radiator",
+                        "in the pocket of a winter coat", "beneath the floor mat",
+                        "inside a library book", "at the bottom of the tool box",
+                        "in the hollow of the garden wall", "under the loose board",
+                        "between the cushions of the old bench", "in the hen house"])
+    weather = rng.choice(WEATHER)
+    feeling = rng.choice(FEELINGS)
+    keep_days = rng.choice(["three days", "a week", "a fortnight", "the whole winter"])
+    owner = rng.choice(["the old stationmaster", "the baker's daughter",
+                        "a traveling salesman", "the schoolteacher",
+                        "the seamstress from the second floor", "the ferryman",
+                        "a choir boy with freckles", "the midwife",
+                        "the night porter at the hotel", "the gardener"])
+    craft = rng.choice(PROFESSIONS)
+    openers = [
+        f"On a {weather} morning, not far from {place}, {name} found {obj} {where}.",
+        f"It was {weather} when {name}, who worked as a {craft}, discovered {obj} {where}.",
+        f"Nobody who frequented {place} could remember losing {obj}, but there it was, {where}, and {name} was the one who found it.",
+    ]
+    middles = [
+        f"{name} turned it over slowly. It was worn at the edges, the way things get when they have been carried for years and loved without ceremony.",
+        f"For a moment {name} simply stood and looked at it. There are things that arrive quietly and change the furniture of a day.",
+        f"It was not valuable, anyone could see that. But it had the particular patience of an object that had been waiting on purpose.",
+    ]
+    waits = [
+        f"{name} kept it for {keep_days}, asking after an owner in the least dramatic way: a word here, a word there, nothing pinned to a door.",
+        f"For {keep_days} the thing lay on the kitchen table while {name} thought about what to do and made tea instead.",
+        f"{name} waited {keep_days}. No one came. The shops did not gossip about it. The thing belonged to nobody, and for that reason it belonged to everywhere.",
+    ]
+    ends = [
+        f"In the end it was {owner} who said, quietly, that they had stopped looking years ago. {name} handed it over without a speech. That, in {place}, was considered the entire reward: a {feeling} walk home and a story told twice at supper.",
+        f"When {owner} finally recognized it, the whole thing took less than a minute. \"I wondered where you had gone,\" {owner} said to the object, not to {name}, which {name} thought exactly right.",
+        f"{name} gave it to {owner} on a {weather} afternoon, and was offered money, and refused it, and was offered cake, and accepted. The {feeling} aftertaste of the afternoon lasted longer than the cake.",
+    ]
+    return f"{_s(openers, rng)}\n\n{_s(middles, rng)}\n\n{_s(waits, rng)}\n\n{_s(ends, rng)}"
+
+
+@family("story_two_friends")
+def story_two_friends(rng: random.Random) -> str:
+    a, b = rng.sample(FIRST_NAMES, 2)
+    place = rng.choice(PLACES)
+    activity = rng.choice(ACTIVITIES)
+    job_a = rng.choice(PROFESSIONS)
+    food = rng.choice(FOODS)
+    season = rng.choice(["spring", "high summer", "early autumn", "the deep of winter"])
+    habit = rng.choice([
+        "met every Friday without fail and never once said why Fridays",
+        "argued about everything and agreed that this was the point",
+        "had known each other so long that silence had become a shared language",
+        "kept a running tally of small debts neither of them intended to settle",
+        "never telephoned, because telephones made everything sound worse than it was",
+    ])
+    quirk_b = rng.choice([
+        "arrived everywhere eleven minutes early and denied it",
+        "carried an umbrella in all forecasts and lent it without conditions",
+        "could name every bird by its song and nobody believed her",
+        "remembered everyone's birthday and pretended not to",
+        "saved good news for last the way other people save dessert",
+    ])
+    event = rng.choice([
+        f"One {season} afternoon, {b} did not come. This had never happened, not once, and {a} sat with the {food} going cold and felt the first honest worry of a comfortable life.",
+        f"One morning in {season}, {a} found a note in the usual place: three lines, untidy, unmistakably from {b}. It asked for help with something small and embarrassing.",
+        f"On the first cold morning of {season}, {b} arrived with two parcels and a plan that required {a} to take a day off work, which was out of the question and therefore agreed immediately.",
+    ])
+    resolve = rng.choice([
+        f"It turned out to be nothing, which is to say it turned out to be everything: {b} the {job_a} had simply forgotten the day of the week. They laughed about it for years, but {a} never laughed entirely, and brought two chairs out every Friday after, just in case either of them forgot again.",
+        f"They {activity} until the light went, and fixed the small embarrassing thing, and never mentioned it again, which in {place} passes for a monument.",
+        f"By evening they had done half the plan and eaten all the {food}, and agreed that the other half could wait another year. It did not wait, in the end; but that, as {b} said at the time, is what next year is for.",
+    ])
+    return (f"{a} and {b} had been friends since they were children; everyone "
+            f"around {place} knew the two of them by sight. "
+            f"They {habit}. {a} was steady and {b} {quirk_b}.\n\n{event}\n\n{resolve}")
+
+
+@family("story_weather_day")
+def story_weather_day(rng: random.Random) -> str:
+    place = rng.choice(PLACES)
+    person = rng.choice(FIRST_NAMES)
+    job = rng.choice(PROFESSIONS)
+    storm = rng.choice(["the great storm", "the week of fog", "the sudden frost",
+                        "the three-day rain", "the heatwave", "the freak hailstorm",
+                        "the long drought", "the blizzard"])
+    prep = rng.choice([
+        "boarded the windows against the wind",
+        "stacked sandbags along the garden wall",
+        "carried the beehives into the lee of the barn",
+        "wrapped the water pipes in old blankets",
+        "moved the boats to the upper moorings",
+        "covered the seedbeds with every sheet in the parish",
+    ])
+    small = rng.choice([
+        "a last letter delivered by hand",
+        "a kettle passed over a fence",
+        "a lost dog returned to the grocer",
+        "an extra candle in every window",
+        "a pot of soup that toured four kitchens in one evening",
+        "a borrowed umbrella walked home twice",
+    ])
+    after = rng.choice([
+        "and the town counted roofs like a prayer and found every one accounted for",
+        "and when it was over the streets smelled of clean beginnings",
+        "and the lost things came back in ones and twos, the way cats come home",
+        "and the schoolmaster said it had been the best-attended geography lesson in living memory",
+        "and for months afterwards people finished the story with the same sentence: we were ready, and we were lucky, and we were both",
+    ])
+    return (f"Nobody who lived near {place} at the time forgot {storm}. "
+            f"{person} the {job} remembered it best, because before it came the whole town "
+            f"{prep}.\n\nThe small thing {person} remembered was not the wind or the damage. "
+            f"It was {small}, which seemed afterwards to have been the point of the whole exercise: "
+            f"{after}.")
+
+
+@family("story_first_job")
+def story_first_job(rng: random.Random) -> str:
+    person = rng.choice(FIRST_NAMES)
+    job = rng.choice(["baker's boy", "lighthouse keeper's assistant", "grocer",
+                      "apprentice tailor", "stable hand", "telephone operator",
+                      "milkman", "ticket clerk", "park keeper", "printer's devil"])
+    place = rng.choice(PLACES)
+    elder = rng.choice(["the old master", "the head keeper", "the forewoman",
+                        "the senior clerk", "the chief engineer"])
+    advice = rng.choice([
+        "Start before the bell and nobody will ever ask what time you arrive.",
+        "The customer is not always right, but the customer is always there.",
+        "Learn the names first; the rest of the job will introduce itself.",
+        "Everything is heavy until you learn to carry it; then it is only yours.",
+        "Keep the sharp tools sharp and the blunt opinions blunter.",
+    ])
+    mistake = rng.choice([
+        f"On the first morning, {person} dropped, broke, mislaid or misdirected almost everything that could be dropped, broken, mislaid or misdirected.",
+        f"{person} made exactly one mistake in the first week, but it was a thorough one, involving the wrong delivery, the wrong address, and the wrong side of town on market day.",
+        f"Nothing went wrong until the third day, when everything went wrong at once, including, for reasons nobody explained, a goat.",
+    ])
+    keepers = rng.choice([
+        "kept the job for forty-one years and sent postcards to the same address long after it stopped existing",
+        "left after two winters but used the lesson every working day afterwards",
+        "grew into the job the way a tree grows into a fence, until nobody could say where one ended and the other began",
+        "taught the next apprentice the same first sentence, and the one after that said the same thing, which is how a place keeps its mind",
+    ])
+    return (f"{person}'s first job was as a {job} in {place}. The {elder} offered, "
+            f"on the first morning, exactly one piece of advice: \"{advice}\"\n\n"
+            f"{mistake}\n\nIt was the advice that survived the mistake, and the mistake "
+            f"that made the advice worth keeping. {person} {keepers}.")
+
+
+@family("story_small_kindness")
+def story_small_kindness(rng: random.Random) -> str:
+    giver = rng.choice(FIRST_NAMES)
+    receiver = rng.choice(FIRST_NAMES)
+    place = rng.choice(PLACES)
+    weather = rng.choice(WEATHER)
+    thing = rng.choice(["a seat on the crowded bus", "the last umbrella in the shop",
+                        "a packet of sandwiches", "directions walked, not pointed",
+                        "a window held open on the train", "the good ladder",
+                        "a lift to the early ferry", "a bag of ripe plums",
+                        "the warm pair of gloves", "ten minutes of patient listening"])
+    reason = rng.choice([
+        "was tired in the way that sleep does not fix",
+        "had forgotten the day of the week and with it the shopping money",
+        "was new in town and apologizing to stationary objects",
+        "had just received bad news in a very good hat",
+        "was carrying something heavier than it looked",
+    ])
+    echo = rng.choice([
+        "Years later, neither of them could remember what had been said, only what had been done, which they both agreed was the correct ratio.",
+        "It was nothing, both of them said later, and both of them meant something by it.",
+        "The debt was never mentioned again, which is how some debts get paid with interest.",
+        "A week later the same thing happened in reverse, with different weather, which both of them found quietly suspicious and did not discuss.",
+    ])
+    return (f"On a {weather} afternoon in {place}, {receiver} {reason}. "
+            f"{giver}, a stranger at the time, offered {thing}.\n\n"
+            f"There was no speech. There were no witnesses except the ticket collector, "
+            f"who told the story later in two sentences and improved neither. "
+            f"{echo}")
+
+
+@family("story_animal_day")
+def story_animal_day(rng: random.Random) -> str:
+    animal = rng.choice(["the ginger cat", "the one-eyed magpie", "the old donkey",
+                         "the harbor seal", "the stationmaster's dog", "the lame goose",
+                         "the butcher's parrot", "the churchyard fox"])
+    place = rng.choice(PLACES)
+    habit = rng.choice([
+        "inspected everything that arrived by truck and approved of none of it",
+        "slept through sermons and woke for picnics",
+        "demanded tribute at the same three doors in the same order",
+        "escorted children to the corner and returned alone, duty done",
+        "knew the sound of the five-thirty bus and objected to it daily",
+    ])
+    feat = rng.choice([
+        "put out a fire by making a noise the fire engine could only envy",
+        "found a lost wedding ring in a border collie's time, though slower",
+        "led two stranded hikers off the moor in thick fog",
+        "stopped a runaway pram at the bottom of Chapel Hill",
+        "woke the whole street at four in the morning about a burst water main",
+    ])
+    honor = rng.choice([
+        "received, by popular decree, the freedom of the fish market",
+        "was fed thereafter at the town's expense and grew smug about it",
+        "got its photograph in the window of the post office, next to the motorbike licenses",
+        "was declared, at a meeting nobody minuted, a local institution",
+    ])
+    return (f"Everyone in {place} knew {animal}, who {habit}.\n\n"
+            f"Then came the day {animal} {feat}, and after that nothing was the same: "
+            f"{animal} {honor}.\n\n"
+            f"Ask anyone in {place} about it today and they will tell you the story in "
+            f"roughly the same words, which is how you know the important parts are true. "
+            f"Ask {animal}, said the locals, and you will get a look that suggests "
+            f"the story has always been more complicated than the humans realize.")
+
+
+@family("story_journey_errand")
+def story_journey_errand(rng: random.Random) -> str:
+    name = rng.choice(FIRST_NAMES)
+    place = rng.choice(PLACES)
+    goal = rng.choice(PLACES)
+    while goal == place:
+        goal = rng.choice(PLACES)
+    cargo = rng.choice(["a jar of preserved plums", "a letter that must not get wet",
+                        "a wedding cake in two boxes", "a medicine bottle wrapped in wool",
+                        "a violin older than the road", "a fish in a bucket",
+                        "eggs, one dozen, entire", "a christening shawl"])
+    mode = rng.choice(["by the early bus", "on a borrowed bicycle", "on foot",
+                       "by the milk train", "in the back of the post van"])
+    weather = rng.choice(WEATHER)
+    mishap = rng.choice([
+        "the bridge was up and the ferryman was having tea",
+        "the road flooded to the depth of one regret",
+        "the bus driver forgot the timetable and invented a better one",
+        "a flock of sheep entered negotiations with the traffic",
+        "the bicycle chain chose the steepest hill to retire on",
+    ])
+    aid = rng.choice([
+        "a truck driver with a flask of tea and no schedule",
+        "the schoolmistress driving her mother to market",
+        "two choirboys with a rope",
+        "the village constable, who insisted this was routine",
+        "a honeymoon couple in a decorated car",
+    ])
+    return (f"When {name} set out from {place} with {cargo}, the plan was simple: "
+            f"{mode} to {goal}, deliver, return before dark. It was {weather}, "
+            f"but the plan was simple, and simple plans feel weatherproof.\n\n"
+            f"Halfway there, {mishap}. Simple plans, it turned out, are only weatherproof "
+            f"indoors. It was {aid} who got things moving again, on the understanding that "
+            f"{name} would never let the story be forgotten.\n\n"
+            f"The {cargo.split(' ')[0]} arrived late, slightly famous. In {goal} they tell "
+            f"the story as a warning about travel; in {place} they tell it as proof that "
+            f"the world, despite its weather, is mostly full of {aid.split(' with')[0]} "
+            f"and other reasonable people.")
+
+
 DEFAULT_COUNTS = {
-    # conversation: warm, everyday
+    # conversation: warm, everyday (kept modest: conv docs are the longest,
+    # so raw counts below still translate into a healthy share)
     "conv_plans": 60, "conv_favor": 55, "conv_help_task": 55, "conv_advice": 55,
-    "conv_disagree": 55, "conv_smalltalk": 60, "conv_illness": 45,
-    "conv_shopping": 45, "conv_lost_item": 45, "conv_weekend_review": 45,
-    "conv_teaching_moment": 45, "conv_phone_invite": 45,
+    "conv_disagree": 55, "conv_smalltalk": 60, "conv_illness": 50,
+    "conv_shopping": 50, "conv_lost_item": 50, "conv_weekend_review": 50,
+    "conv_teaching_moment": 50, "conv_phone_invite": 50,
     # qa
-    "qa_definition": 55, "qa_why": 45, "qa_how": 45, "qa_diff": 40,
-    "qa_what_if": 40, "qa_where": 35, "qa_when": 30, "qa_who": 30,
-    "qa_everyday_best": 35,
+    "qa_definition": 130, "qa_why": 120, "qa_how": 120, "qa_diff": 105,
+    "qa_what_if": 105, "qa_where": 90, "qa_when": 80, "qa_who": 80,
+    "qa_everyday_best": 90,
     # descriptions
-    "desc_room": 55, "desc_person": 55, "desc_landscape": 50,
-    "desc_weather_scene": 45, "desc_object": 45, "desc_animal": 45,
-    "desc_market": 30,
+    "desc_room": 140, "desc_person": 140, "desc_landscape": 125,
+    "desc_weather_scene": 115, "desc_object": 115, "desc_animal": 115,
+    "desc_market": 80,
     # instructions
-    "instr_recipe": 40, "instr_procedure": 50, "instr_rules": 30,
-    "instr_directions": 40,
+    "instr_recipe": 150, "instr_procedure": 185, "instr_rules": 110,
+    "instr_directions": 150,
     # explanations
-    "expl_why_long": 45, "expl_how_long": 45, "expl_definition_long": 45,
-    "expl_compare": 35, "expl_cause_chain": 30, "expl_math_words": 25,
+    "expl_why_long": 190, "expl_how_long": 190, "expl_definition_long": 190,
+    "expl_compare": 145, "expl_cause_chain": 130, "expl_math_words": 105,
     # formal
-    "formal_letter": 40, "formal_notice": 25, "formal_report": 30,
+    "formal_letter": 120, "formal_notice": 80, "formal_report": 95,
+    # stories (authored narrative; no downloads available in this environment)
+    "story_found_object": 180, "story_two_friends": 160, "story_weather_day": 140,
+    "story_first_job": 140, "story_small_kindness": 140, "story_animal_day": 120,
+    "story_journey_errand": 140,
+    # extra story-style variety from mixed knowledge + narrative is provided by seeds
 }
 
 FAMILY_CATEGORY = {
     "conv": "conversation", "qa": "questions_and_answers", "desc": "descriptions",
     "instr": "instructions", "expl": "explanations", "formal": "formal",
+    "story": "stories",
 }
 
 

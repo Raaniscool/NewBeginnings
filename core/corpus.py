@@ -89,25 +89,41 @@ def _minhash_sig(text: str, k: int = 16, n: int = 8) -> Tuple[int, ...]:
     return tuple(sorted((_hash_int(g) for g in grams))[:k])
 
 
-def drop_near_duplicates(docs: List[Document], thresh: float = 0.7) -> Tuple[List[Document], int]:
-    """Drop documents whose word-8-gram MinHash signature overlaps an earlier
-    kept document (Jaccard estimate >= thresh). O(n^2) on fixed-size sigs."""
+def drop_near_duplicates(docs: List[Document], thresh: float = 0.75) -> Tuple[List[Document], int]:
+    """Drop a document whose word-8-gram MinHash signature overlaps an
+    earlier kept document from a DIFFERENT group (Jaccard estimate >= thresh).
+
+    Why cross-group only: template families produce legitimate surface
+    variety by recombining the same clause frames with different slots. At
+    the 8-gram level two very different members of one family legitimately
+    share most shingles, and a global pass would (correctly-but-uselessly)
+    annihilate the generated slice. What we actually need to kill is
+    redundancy BETWEEN distinct sources (e.g. a seed and a generator doc
+    retelling the same recipe), not within-family variety, which is the
+    whole point of the generator. Exact duplicates are removed globally
+    before this function runs."""
     kept: List[Document] = []
-    sigs: List[Tuple[int, ...]] = []
+    sigs_by_group: Dict[str, List[Tuple[int, ...]]] = {}
     dropped = 0
     for d in docs:
         sig = _minhash_sig(d.text)
+        sigset = set(sig)
         dup = False
-        for other in sigs:
-            inter = len(set(sig) & set(other))
-            if inter / max(1, len(set(sig) | set(other))) >= thresh:
-                dup = True
+        for group, sigs in sigs_by_group.items():
+            if group == d.group:
+                continue
+            for other in sigs:
+                inter = len(sigset & other)
+                if inter / max(1, len(sigset | other)) >= thresh:
+                    dup = True
+                    break
+            if dup:
                 break
         if dup:
             dropped += 1
             continue
         kept.append(d)
-        sigs.append(sig)
+        sigs_by_group.setdefault(d.group, []).append(sigset)
     return kept, dropped
 
 

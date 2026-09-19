@@ -81,7 +81,7 @@ def test_position_limit_enforced():
     x = torch.randint(0, cfg.vocab_size, (1, cfg.block_size + 5))
     try:
         model(x)
-    except (AssertionError, IndexError, RuntimeError):
+    except (ValueError, AssertionError, IndexError, RuntimeError):
         return  # loud failure is the contract
     raise AssertionError("model accepted sequences longer than block_size")
 

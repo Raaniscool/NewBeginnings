@@ -38,8 +38,6 @@ WORKS = [
      "The Wind in the Willows (Kenneth Grahame, 1908)"),
     ("GITenberg/Grimms-Fairy-Tales_2591", 2591, "grimm", "stories",
      "Grimms' Fairy Tales (Margaret Hunt translation, 1884)"),
-    # NOTE: The-Elements-of-Style 404'd on codeload in this environment; the
-    # WORKS list is deliberately small and failures are skipped with a warning.
 ]
 
 START_RE = re.compile(r"\*\*\*\s*START OF (THE|THIS) PROJECT GUTENBERG EBOOK.*\n", re.I)
@@ -48,6 +46,13 @@ ILLUS_RE = re.compile(r"\[(Illustration|Illustration:|Image)[^\]]*\]", re.I)
 TRANSCRIBER_RE = re.compile(r"(Transcriber'?s? Notes?:|Etext transcriber)", re.I)
 HEADING_RE = re.compile(r"^\s*(CHAPTER\s+[IVXLC0-9]+|[IVXLC]{2,}\.?|Chapter\s+\d+)\s*$")
 ALLCAPS_HEADING_RE = re.compile(r"^[A-Z][A-Z ,;:'\-–—.?!ÆSŒ]{3,70}$")
+
+BOILER_DENSE_RE = re.compile(
+    r"project gutenberg|gutenberg\.net|pgdp|ebook|produced by|proofreading team"
+    r"|copyright|transcriber",
+    re.I)
+
+TRANSCRIBER_BLOCK_RE = re.compile(r"Transcriber'?s? Note:?.*?(?=\n\s*\n)", re.I | re.S)
 
 
 def fetch_text(repo: str) -> str:
@@ -85,13 +90,6 @@ def strip_gutenberg_boilerplate(text: str) -> str:
     return text
 
 
-TRANSCRIBER_BLOCK_RE = re.compile(r"Transcriber'?s? Note:?.*?(?=\n\s*\n)", re.I | re.S)
-BOILER_DENSE_RE = re.compile(
-    r"project gutenberg|gutenberg\.net|pgdp|ebook|produced by|proofreading team"
-    r"|copyright|transcriber",
-    re.I)
-
-
 def clean_text(text: str) -> str:
     text = text.replace("\r\n", "\n").replace("\r", "\n")
     text = ILLUS_RE.sub("", text)
@@ -110,10 +108,12 @@ def split_into_documents(text: str) -> list[str]:
     """Split on chapter/story headings; fall back to paragraph windows."""
     lines = text.split("\n")
     docs, current = [], []
+
     def flush():
         chunk = "\n".join(current).strip()
         if len(chunk) > 400:
             docs.append(chunk)
+
     for line in lines:
         stripped = line.strip()
         is_heading = bool(HEADING_RE.match(stripped)) or (
@@ -140,6 +140,43 @@ def split_into_documents(text: str) -> list[str]:
     return docs
 
 
+def _looks_like_prose(doc: str) -> bool:
+    ws = [w for w in re.findall(r"[A-Za-z']+", doc) if len(w) > 1]
+    if not ws:
+        return False
+    lower = sum(1 for w in ws if any(c.islower() for c in w))
+    funcs = sum(1 for w in ws if w.lower() in
+                ("the", "of", "and", "a", "to", "in", "is", "it"))
+    return (lower / len(ws) > 0.6) and (funcs / len(ws) > 0.04)
+
+
+def _strip_leading_junk(doc: str) -> str:
+    """Remove title-page/contents junk glued to a doc's head: drop every
+    leading line until the first prose-looking line."""
+    lines = doc.split("\n")
+    i = 0
+    while i < len(lines):
+        ws = re.findall(r"[A-Za-z']+", lines[i])
+        if (len(ws) >= 3 and
+                sum(1 for w in ws if any(c.islower() for c in w)) / len(ws) > 0.6):
+            break  # prose begins here
+        i += 1
+    return "\n".join(lines[i:]).strip()
+
+
+def process(raw: str) -> list[str]:
+    body = strip_gutenberg_boilerplate(raw)
+    body = clean_text(body)
+    docs = split_into_documents(body)
+    # front matter (title pages, contents, illustration lists) can be glued
+    # onto the first real chunk; strip per-document head junk.
+    docs = [_strip_leading_junk(d) for d in docs]
+    docs = [d for d in docs if len(d) > 300]
+    docs = [d for d in docs if len(BOILER_DENSE_RE.findall(d)) < 3
+            and _looks_like_prose(d)]
+    return docs
+
+
 def main() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     for repo, ebook_no, slug, category, title in WORKS:
@@ -149,41 +186,7 @@ def main() -> None:
         except Exception as exc:  # keep going: the slice is deliberately small
             print(f"  SKIPPED {slug}: {exc}")
             continue
-        body = strip_gutenberg_boilerplate(raw)
-        body = clean_text(body)
-        docs = split_into_documents(body)
-        def looks_like_prose(doc: str) -> bool:
-            ws = [w for w in re.findall(r"[A-Za-z']+", doc) if len(w) > 1]
-            if not ws:
-                return False
-            lower = sum(1 for w in ws if any(c.islower() for c in w))
-            funcs = sum(1 for w in ws if w.lower() in
-                        ("the", "of", "and", "a", "to", "in", "is", "it"))
-            return (lower / len(ws) > 0.6) and (funcs / len(ws) > 0.04)
-
-        def strip_leading_junk(doc: str) -> str:
-            """Remove title-page/contents junk glued to a doc's head: keep
-            heading lines only if prose immediately follows, else drop every
-            leading line until the first prose-looking line."""
-            lines = doc.split("\n")
-            i = 0
-            while i < len(lines):
-                ws = re.findall(r"[A-Za-z']+", lines[i])
-                if (len(ws) >= 3 and
-                        sum(1 for w in ws if any(c.islower() for c in w)) / len(ws) > 0.6):
-                    break  # prose begins here
-                i += 1
-            return "\n".join(lines[i:]).strip()
-
-        # front matter (title pages, contents, illustration lists) can be
-        # glued onto the first real chunk; strip per-document head junk.
-        docs = [strip_leading_junk(d) for d in docs]
-        docs = [d for d in docs if len(d) > 300]
-        boiler_docs = [d for d in docs if len(BOILER_DENSE_RE.findall(d)) >= 3]
-        docs = [d for d in docs if len(BOILER_DENSE_RE.findall(d)) < 3
-                and looks_like_prose(d)]
-        if boiler_docs:
-            print(f"  dropped {len(boiler_docs)} boilerplate chunk(s)")
+        docs = process(raw)
         # cap politely at a document boundary
         total, kept = 0, []
         for d in docs:

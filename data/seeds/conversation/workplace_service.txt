@@ -1,0 +1,53 @@
+Ana: Morning, Oskar. Quick thing before the standup: the supplier moved the delivery to next Tuesday.
+Oskar: Again? That's the third shift this month.
+Ana: I know. I pushed back this time. Told them our schedule's not a suggestion box. They're saying driver shortage, which is probably true, everyone else's deliveries are sliding too. But I got them to commit in writing to Tuesday morning, first route.
+Oskar: Written beats promised. Did you tell Priya? She's been planning the line changeover around the old date.
+Ana: She's on my nine-thirty list. I'll flag it at the standup as well so there's no ambiguity. Anything else urgent from your side? You had that tooling issue on Friday.
+Oskar: Settled. The second press was out of alignment by two tenths of a millimeter — enough of it, and the line kept rejecting good parts. Took us most of the afternoon to find, and about four minutes to fix.
+Ana: Story of every maintenance problem I've ever had. Spend a day finding it, a minute fixing it.
+Oskar: Exactly. Anyway — I'm bringing it up in the retrospective today because the root cause wasn't wear and tear, it was that the last calibration was done in a hurry on a Thursday evening, and the hurried calibrations are the ones that drift. We should be strict about the calibration slot being a no-rush appointment.
+Ana: Put it in the action log and I'm with you. Coffee?
+Oskar: If you're buying.
+Ana: I was thinking of the machine, Oskar.
+Oskar: I'm with you even more, then.
+===
+Customer: Hello, I'm calling about a broadband fault. There's been no connection since yesterday evening.
+Agent: I'm sorry to hear that. I'll help you get that sorted. Can I take the name on the account and the postcode, please?
+Customer: Renata Fielding. Postcode BL4 9NT.
+Agent: Thank you, Ms. Fielding. Before we run any tests, can I quickly confirm some basics? Is the router powered on, and which lights are showing?
+Customer: The power light is green. The internet light is red. The Wi-Fi light is green, and my laptop does connect to Wi-Fi, but there's no internet on it.
+Agent: Perfect description, thank you — the Wi-Fi signal exists, but the line itself is down, which points away from the equipment at your end. Let me check the network status in your area. One moment... Yes, I'm seeing an open incident in BL4 — a cable fault reported at 21:17 yesterday, currently with an estimated fix of tomorrow morning between eight and twelve.
+Customer: So it isn't my equipment?
+Agent: No, this one is ours. Your line is probably part of the affected cabinet. Your service will come back on its own when the repair crew finishes, no action needed on your side. I'm going to put a credit on your account for the days affected — that's automatic from the day after the outage is confirmed fixed, but I'll flag the ticket now so you don't need to call back.
+Customer: That's more than I expected, thank you — half the battle is usually convincing someone it's real.
+Agent: The red light did the convincing. Is there anything else I can help with? There is one thing I would suggest: if the outage runs past tomorrow noon, call us back, quoting incident number 8-1-4.
+Customer: 8-1-4, got it. Nothing else — I'll survive offline for a day and remember what books are for.
+Agent: A rare skill these days. Thank you for calling, Ms. Fielding.
+Customer: Thank you for the straightforward answer. Goodbye.
+===
+Chef: Hal, walk me through the dinner prep. What's the state of play?
+Hal: Mise en place is basically done — the carrots are brunoise, the shallots are done, stocks are on, lamb is portioned. The only thing outstanding is the fish station; we got the sea bass at four and I haven't broken it down yet because — and I'm sorry — I wanted to double-check the specials board with you first.
+Chef: What's on the board?
+Hal: "Market fish, pan-fried, with beurre blanc and samphire."
+Chef: Right. And what's the problem?
+Hal: The samphire delivery didn't arrive this morning. Nobody signed for it, and the supplier pickup note says it was never collected. So it's market fish with beurre blanc and a thoughtful absence.
+Chef: We have spinach. We have peas. We have, if I remember correctly, a bag of cavolo nero that the evening chef hates.
+Hal: We do.
+Chef: Fine. Change the board — beurre blanc, smashed peas and mint. It keeps the color, works with the bass, and I don't have to answer the question "where's the samphire" forty times tonight. And write it up right now, not at five-to, so the floor staff learn it before the first table reads the board.
+Hal: Done. Anything else?
+Chef: Taste everything before service, and tell Emma she needs to check the herb butter — yesterday's batch was a quarter-degree from being soup. You're doing fine. Ask before you can't fix it; that's the only rule tonight.
+Hal: Understood. Samphire cancelled, peas in, board first, taste always.
+Chef: Good service, Hal.
+===
+Nurse: Can you tell me what's brought you in today?
+Patient: The knee, the same one as usual, but it's playing up differently. For the last two weeks it aches on stairs, and it clicks in the morning when I stand up — and then for the rest of the day it's fine, absolutely fine. But it's gone on long enough that I thought I shouldn't keep leaving it.
+Nurse: Good call. Is the pain sharp or dull, on the stairs?
+Patient: Dull. Like somebody's leaning on the inside of the joint. It's not stopping me doing anything yet; it just complains.
+Nurse: Any swelling that you've noticed?
+Patient: Only after the weekend, and I was on a ladder Saturday, so that could have been enthusiasm rather than injury.
+Nurse: Possibly. The doctor will ask you to walk a few steps and have a feel around the joint. Before that, let me get the basics: height, weight, and your blood pressure — and can you tell me about the clicking? Is there pain with the click?
+Patient: No, it just sounds like a bag being opened.
+Nurse: That's a very distinctive description — I'll put it in.
+Patient: Tell the doctor the ladder one was my wife's idea, eh? For the record.
+Nurse: The record will show only home renovation, I promise. Right, blood pressure cuff. Keep the arm relaxed.
+===

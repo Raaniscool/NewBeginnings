@@ -200,7 +200,7 @@ class Trainer:
                     now = time.time()
                     tps = tokens_per_step * cfg.log_interval / max(1e-9, now - last_log)
                     last_log = now
-                    rec = {"step": self.step, "lr": lr, "train_loss": float(loss),
+                    rec = {"step": self.step, "lr": lr, "train_loss": float(loss.detach()),
                            "tokens_per_sec": round(tps), "elapsed_s": round(now - t_start, 1)}
                     self._log(rec)
                     print(f"step {self.step:>6}/{self.max_steps} | lr {lr:.2e} | "

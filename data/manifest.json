@@ -1,0 +1,87 @@
+{
+  "build_seed": 20260919,
+  "counts": {
+    "seed_docs": 247,
+    "download_docs": 0,
+    "generated_docs_raw": 5250,
+    "code_screened_out": 0,
+    "screened_examples": [],
+    "exact_dupes_removed": 1279,
+    "near_dupes_removed": 0,
+    "final_docs": 4218
+  },
+  "categories": {
+    "conversation": {
+      "docs": 655,
+      "chars": 333655,
+      "share_pct": 18.19,
+      "est_tokens": 83413
+    },
+    "descriptions": {
+      "docs": 689,
+      "chars": 219145,
+      "share_pct": 11.95,
+      "est_tokens": 54786
+    },
+    "explanations": {
+      "docs": 332,
+      "chars": 111923,
+      "share_pct": 6.1,
+      "est_tokens": 27980
+    },
+    "formal": {
+      "docs": 209,
+      "chars": 76974,
+      "share_pct": 4.2,
+      "est_tokens": 19243
+    },
+    "instructions": {
+      "docs": 308,
+      "chars": 139369,
+      "share_pct": 7.6,
+      "est_tokens": 34842
+    },
+    "knowledge": {
+      "docs": 91,
+      "chars": 55895,
+      "share_pct": 3.05,
+      "est_tokens": 13973
+    },
+    "questions_and_answers": {
+      "docs": 897,
+      "chars": 248312,
+      "share_pct": 13.54,
+      "est_tokens": 62078
+    },
+    "stories": {
+      "docs": 1037,
+      "chars": 648540,
+      "share_pct": 35.37,
+      "est_tokens": 162135
+    }
+  },
+  "splits": {
+    "train": {
+      "docs": 3588,
+      "chars": 1488901,
+      "est_tokens_chars_over_4": 372225
+    },
+    "val": {
+      "docs": 340,
+      "chars": 222414,
+      "est_tokens_chars_over_4": 55603
+    },
+    "test": {
+      "docs": 290,
+      "chars": 122498,
+      "est_tokens_chars_over_4": 30624
+    }
+  },
+  "origins": {
+    "generated": 3971,
+    "seed": 247
+  },
+  "total_chars": 1833813,
+  "total_est_tokens": 458453,
+  "corpus_sha256": "99cb48860ce693dbdf178c9b7793350a7e2fdde6d0ac72ad61f2b94cd93d56f4"
+}
