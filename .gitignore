@@ -1,0 +1,55 @@
+# ============================================================
+# NewBeginnings .gitignore
+# Storage is a first-class constraint: keep big/regenerable
+# artifacts OUT of git. Regenerate them from committed configs
+# and scripts instead.
+# ============================================================
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# --- Virtual environments / package copies (never commit) ---
+.venv/
+venv/
+env/
+
+# --- Model checkpoints: LARGE. Kept locally, not in git. ---
+checkpoints/
+*.ckpt
+*.ckpt.tmp
+*.pt
+*.pth
+
+# --- Tokenized datasets: regenerable from data/corpus ---
+data/tokenized/
+*.npy
+*.bin
+
+# --- Built corpus is regenerable from seeds + scripts ---
+# (seeds ARE committed; generated documents are not)
+data/corpus/
+
+# --- Downloaded raw third-party text (re-fetchable) ---
+data/raw_downloads/
+
+# --- Training logs / scratch ---
+artifacts/runs/
+artifacts/tmp/
+*.log
+
+# --- OS / editor ---
+.DS_Store
+*.swp
+*~
+
+# NOTE: the following small, valuable files ARE committed on purpose:
+#   data/seeds/**                 hand-authored corpus source
+#   data/manifest.json            corpus composition manifest
+#   artifacts/tokenizer/          tokenizer JSON (small, reproducibility-critical)
+#   artifacts/benchmarks/**       benchmark outputs for each model version
+#   artifacts/reports/**          milestone reports / metrics JSON
