@@ -1,0 +1,217 @@
+{
+  "version": "v1",
+  "gate": {
+    "version": "v1",
+    "passed": false,
+    "floors_passed": 6,
+    "floors_total": 11,
+    "all_floors_met": false,
+    "checks": {
+      "test_ppl": {
+        "value": 212.6,
+        "floor": 45.0,
+        "pass": false
+      },
+      "grammar_cloze_acc": {
+        "value": 0.5116,
+        "floor": 0.8,
+        "pass": false
+      },
+      "continuity_cloze_acc": {
+        "value": 0.4286,
+        "floor": 0.75,
+        "pass": false
+      },
+      "rep3_rate": {
+        "value": 0.0256,
+        "floor": 0.1,
+        "pass": true
+      },
+      "distinct_2": {
+        "value": 0.5421,
+        "floor": 0.6,
+        "pass": false
+      },
+      "tokens_to_first_rep3": {
+        "value": 72.0,
+        "floor": 32,
+        "pass": true
+      },
+      "double_word_rate": {
+        "value": 0.00164,
+        "floor": 0.01,
+        "pass": true
+      },
+      "terminal_punct_rate": {
+        "value": 0.9722,
+        "floor": 0.95,
+        "pass": true
+      },
+      "question_mark_rate": {
+        "value": 0.7,
+        "floor": 0.8,
+        "pass": false
+      },
+      "worst_category_rep3": {
+        "value": 0.0748,
+        "floor": 0.15,
+        "pass": true
+      },
+      "worst_category_distinct2": {
+        "value": 0.7709,
+        "floor": 0.5,
+        "pass": true
+      }
+    },
+    "improvement": {
+      "applicable": false,
+      "reason": "first released version defines the baseline"
+    },
+    "note": "v1 is the baseline version and cannot pass the gate by rule.",
+    "verdict": "FAIL \u2014 Phase 1/2 continues; programming remains locked"
+  },
+  "test_ppl": 212.6,
+  "benchmark_metrics": {
+    "overall": {
+      "rep3_rate": 0.0256,
+      "distinct_1": 0.183,
+      "distinct_2": 0.5421,
+      "tokens_to_first_rep3_median": 72.0,
+      "double_word_rate": 0.00164,
+      "terminal_punct_rate": 0.9722,
+      "mean_words": 85.4,
+      "n_texts": 72,
+      "question_mark_rate": 0.7
+    },
+    "per_category": {
+      "conversation": {
+        "rep3_rate": 0.0175,
+        "distinct_1": 0.3794,
+        "distinct_2": 0.7709,
+        "tokens_to_first_rep3_median": 63,
+        "double_word_rate": 0.00275,
+        "terminal_punct_rate": 1.0,
+        "mean_words": 82,
+        "n_texts": 9
+      },
+      "questions": {
+        "rep3_rate": 0.0333,
+        "distinct_1": 0.4229,
+        "distinct_2": 0.8251,
+        "tokens_to_first_rep3_median": 56.0,
+        "double_word_rate": 0.0011,
+        "terminal_punct_rate": 1.0,
+        "mean_words": 85.6,
+        "n_texts": 10,
+        "question_mark_rate": 0.7
+      },
+      "explanations": {
+        "rep3_rate": 0.0748,
+        "distinct_1": 0.4395,
+        "distinct_2": 0.7857,
+        "tokens_to_first_rep3_median": 72.5,
+        "double_word_rate": 0.00145,
+        "terminal_punct_rate": 1.0,
+        "mean_words": 86.8,
+        "n_texts": 8
+      },
+      "descriptions": {
+        "rep3_rate": 0.0198,
+        "distinct_1": 0.4098,
+        "distinct_2": 0.7839,
+        "tokens_to_first_rep3_median": 65.0,
+        "double_word_rate": 0.00302,
+        "terminal_punct_rate": 1.0,
+        "mean_words": 86.6,
+        "n_texts": 8
+      },
+      "instructions": {
+        "rep3_rate": 0.0229,
+        "distinct_1": 0.4315,
+        "distinct_2": 0.8168,
+        "tokens_to_first_rep3_median": 70,
+        "double_word_rate": 0.00174,
+        "terminal_punct_rate": 0.8571,
+        "mean_words": 84.4,
+        "n_texts": 7
+      },
+      "stories": {
+        "rep3_rate": 0.0101,
+        "distinct_1": 0.4,
+        "distinct_2": 0.7905,
+        "tokens_to_first_rep3_median": 79.0,
+        "double_word_rate": 0.00286,
+        "terminal_punct_rate": 1.0,
+        "mean_words": 88.1,
+        "n_texts": 8
+      },
+      "formal": {
+        "rep3_rate": 0.018,
+        "distinct_1": 0.457,
+        "distinct_2": 0.8538,
+        "tokens_to_first_rep3_median": 66.0,
+        "double_word_rate": 0.0,
+        "terminal_punct_rate": 1.0,
+        "mean_words": 85.3,
+        "n_texts": 6
+      },
+      "grammar": {
+        "rep3_rate": 0.0057,
+        "distinct_1": 0.4639,
+        "distinct_2": 0.8857,
+        "tokens_to_first_rep3_median": 73.0,
+        "double_word_rate": 0.0014,
+        "terminal_punct_rate": 1.0,
+        "mean_words": 83,
+        "n_texts": 8
+      },
+      "continuity": {
+        "rep3_rate": 0.0249,
+        "distinct_1": 0.4271,
+        "distinct_2": 0.8277,
+        "tokens_to_first_rep3_median": 81.0,
+        "double_word_rate": 0.0,
+        "terminal_punct_rate": 0.875,
+        "mean_words": 86.6,
+        "n_texts": 8
+      }
+    },
+    "decode": {
+      "name": "gate_pinned",
+      "temperature": 0.8,
+      "top_k": 0,
+      "top_p": 1.0,
+      "repetition_penalty": 1.0,
+      "max_new_tokens": 96,
+      "seed": 99
+    },
+    "benchmark": "benchmarks/english_v1.json",
+    "raw_model_decoding": true
+  },
+  "cloze": {
+    "grammar": {
+      "accuracy": 0.5116,
+      "n": 43,
+      "per_tag": {
+        "agreement": 0.5263,
+        "tense": 0.75,
+        "pronoun": 0.4286,
+        "article": 1.0,
+        "function_word": 0.1429
+      },
+      "chance": 0.5
+    },
+    "continuity": {
+      "accuracy": 0.4286,
+      "n": 42,
+      "per_tag": {
+        "pronoun_gender": 0.4286,
+        "number": 0.5714,
+        "animacy": 0.25,
+        "entity_remention": 0.6364,
+        "context_consistency": 0.2308
+      },
+      "chance": 0.5
+    }
+  }
+}

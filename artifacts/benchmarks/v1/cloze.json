@@ -1,0 +1,26 @@
+{
+  "grammar": {
+    "accuracy": 0.5116,
+    "n": 43,
+    "per_tag": {
+      "agreement": 0.5263,
+      "tense": 0.75,
+      "pronoun": 0.4286,
+      "article": 1.0,
+      "function_word": 0.1429
+    },
+    "chance": 0.5
+  },
+  "continuity": {
+    "accuracy": 0.4286,
+    "n": 42,
+    "per_tag": {
+      "pronoun_gender": 0.4286,
+      "number": 0.5714,
+      "animacy": 0.25,
+      "entity_remention": 0.6364,
+      "context_consistency": 0.2308
+    },
+    "chance": 0.5
+  }
+}

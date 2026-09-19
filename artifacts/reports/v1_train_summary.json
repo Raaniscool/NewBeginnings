@@ -1,0 +1,14 @@
+{
+  "steps": 1410,
+  "max_steps": 1410,
+  "epochs_equiv": 30.0,
+  "best_val_loss": 5.565,
+  "best_val_ppl": 261.1,
+  "final_val_loss": 5.5992,
+  "final_val_ppl": 270.2,
+  "train_seconds": 2846.9,
+  "avg_tokens_per_sec": 3043,
+  "interrupted": false,
+  "wall_clock_s": 2857.8,
+  "model_params": 5296640
+}

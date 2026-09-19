@@ -1,0 +1,7 @@
+{
+  "version": "v1",
+  "ckpt": "checkpoints/v1/best.ckpt",
+  "test_loss": 5.3596,
+  "test_ppl": 212.6,
+  "iters": 60
+}
