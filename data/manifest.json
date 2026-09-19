@@ -2,86 +2,87 @@
   "build_seed": 20260919,
   "counts": {
     "seed_docs": 247,
-    "download_docs": 0,
-    "generated_docs_raw": 5250,
+    "download_docs": 253,
+    "generated_docs_raw": 1378,
     "code_screened_out": 0,
     "screened_examples": [],
-    "exact_dupes_removed": 1279,
+    "exact_dupes_removed": 247,
     "near_dupes_removed": 0,
-    "final_docs": 4218
+    "final_docs": 1631
   },
   "categories": {
     "conversation": {
-      "docs": 655,
-      "chars": 333655,
-      "share_pct": 18.19,
-      "est_tokens": 83413
+      "docs": 225,
+      "chars": 143893,
+      "share_pct": 10.36,
+      "est_tokens": 35973
     },
     "descriptions": {
-      "docs": 689,
-      "chars": 219145,
-      "share_pct": 11.95,
-      "est_tokens": 54786
+      "docs": 242,
+      "chars": 87203,
+      "share_pct": 6.28,
+      "est_tokens": 21800
     },
     "explanations": {
-      "docs": 332,
-      "chars": 111923,
-      "share_pct": 6.1,
-      "est_tokens": 27980
+      "docs": 193,
+      "chars": 71083,
+      "share_pct": 5.12,
+      "est_tokens": 17770
     },
     "formal": {
-      "docs": 209,
-      "chars": 76974,
-      "share_pct": 4.2,
-      "est_tokens": 19243
+      "docs": 102,
+      "chars": 125480,
+      "share_pct": 9.04,
+      "est_tokens": 31370
     },
     "instructions": {
-      "docs": 308,
-      "chars": 139369,
-      "share_pct": 7.6,
-      "est_tokens": 34842
+      "docs": 139,
+      "chars": 69552,
+      "share_pct": 5.01,
+      "est_tokens": 17388
     },
     "knowledge": {
-      "docs": 91,
-      "chars": 55895,
-      "share_pct": 3.05,
-      "est_tokens": 13973
+      "docs": 97,
+      "chars": 182294,
+      "share_pct": 13.13,
+      "est_tokens": 45573
     },
     "questions_and_answers": {
-      "docs": 897,
-      "chars": 248312,
-      "share_pct": 13.54,
-      "est_tokens": 62078
+      "docs": 249,
+      "chars": 82949,
+      "share_pct": 5.97,
+      "est_tokens": 20737
     },
     "stories": {
-      "docs": 1037,
-      "chars": 648540,
-      "share_pct": 35.37,
-      "est_tokens": 162135
+      "docs": 384,
+      "chars": 625963,
+      "share_pct": 45.08,
+      "est_tokens": 156490
     }
   },
   "splits": {
     "train": {
-      "docs": 3588,
-      "chars": 1488901,
-      "est_tokens_chars_over_4": 372225
+      "docs": 1360,
+      "chars": 1112808,
+      "est_tokens_chars_over_4": 278202
     },
     "val": {
-      "docs": 340,
-      "chars": 222414,
-      "est_tokens_chars_over_4": 55603
+      "docs": 168,
+      "chars": 129711,
+      "est_tokens_chars_over_4": 32427
     },
     "test": {
-      "docs": 290,
-      "chars": 122498,
-      "est_tokens_chars_over_4": 30624
+      "docs": 103,
+      "chars": 145898,
+      "est_tokens_chars_over_4": 36474
     }
   },
   "origins": {
-    "generated": 3971,
+    "publicdomain": 253,
+    "generated": 1131,
     "seed": 247
   },
-  "total_chars": 1833813,
-  "total_est_tokens": 458453,
-  "corpus_sha256": "99cb48860ce693dbdf178c9b7793350a7e2fdde6d0ac72ad61f2b94cd93d56f4"
+  "total_chars": 1388417,
+  "total_est_tokens": 347104,
+  "corpus_sha256": "358a7eecefa7df37b929705bc089dfbe1550c767fa076be925d750e829ef8de6"
 }

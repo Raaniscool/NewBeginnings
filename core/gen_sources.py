@@ -1420,33 +1420,34 @@ def story_journey_errand(rng: random.Random) -> str:
 
 
 DEFAULT_COUNTS = {
-    # conversation: warm, everyday (kept modest: conv docs are the longest,
-    # so raw counts below still translate into a healthy share)
-    "conv_plans": 60, "conv_favor": 55, "conv_help_task": 55, "conv_advice": 55,
-    "conv_disagree": 55, "conv_smalltalk": 60, "conv_illness": 50,
-    "conv_shopping": 50, "conv_lost_item": 50, "conv_weekend_review": 50,
-    "conv_teaching_moment": 50, "conv_phone_invite": 50,
+    # Templates are a SUPPLEMENT to real text, not the corpus itself
+    # (user directive 2026-09-19: templates teach the template, not English).
+    # conversation: warm, everyday
+    "conv_plans": 20, "conv_favor": 20, "conv_help_task": 20, "conv_advice": 20,
+    "conv_disagree": 20, "conv_smalltalk": 20, "conv_illness": 15,
+    "conv_shopping": 15, "conv_lost_item": 15, "conv_weekend_review": 15,
+    "conv_teaching_moment": 15, "conv_phone_invite": 15,
     # qa
-    "qa_definition": 130, "qa_why": 120, "qa_how": 120, "qa_diff": 105,
-    "qa_what_if": 105, "qa_where": 90, "qa_when": 80, "qa_who": 80,
-    "qa_everyday_best": 90,
+    "qa_definition": 34, "qa_why": 32, "qa_how": 32, "qa_diff": 28,
+    "qa_what_if": 28, "qa_where": 25, "qa_when": 22, "qa_who": 22,
+    "qa_everyday_best": 25,
     # descriptions
-    "desc_room": 140, "desc_person": 140, "desc_landscape": 125,
-    "desc_weather_scene": 115, "desc_object": 115, "desc_animal": 115,
-    "desc_market": 80,
+    "desc_room": 38, "desc_person": 38, "desc_landscape": 34,
+    "desc_weather_scene": 30, "desc_object": 30, "desc_animal": 30,
+    "desc_market": 22,
     # instructions
-    "instr_recipe": 150, "instr_procedure": 185, "instr_rules": 110,
-    "instr_directions": 150,
+    "instr_recipe": 48, "instr_procedure": 58, "instr_rules": 36,
+    "instr_directions": 48,
     # explanations
-    "expl_why_long": 190, "expl_how_long": 190, "expl_definition_long": 190,
-    "expl_compare": 145, "expl_cause_chain": 130, "expl_math_words": 105,
+    "expl_why_long": 56, "expl_how_long": 56, "expl_definition_long": 56,
+    "expl_compare": 44, "expl_cause_chain": 38, "expl_math_words": 32,
     # formal
-    "formal_letter": 120, "formal_notice": 80, "formal_report": 95,
-    # stories (authored narrative; no downloads available in this environment)
-    "story_found_object": 180, "story_two_friends": 160, "story_weather_day": 140,
-    "story_first_job": 140, "story_small_kindness": 140, "story_animal_day": 120,
-    "story_journey_errand": 140,
-    # extra story-style variety from mixed knowledge + narrative is provided by seeds
+    "formal_letter": 38, "formal_notice": 26, "formal_report": 32,
+    # stories: small supplement only — real narrative now comes from
+    # public-domain downloads (PD works carry the story category).
+    "story_found_object": 22, "story_two_friends": 20, "story_weather_day": 18,
+    "story_first_job": 18, "story_small_kindness": 18, "story_animal_day": 16,
+    "story_journey_errand": 18,
 }
 
 FAMILY_CATEGORY = {

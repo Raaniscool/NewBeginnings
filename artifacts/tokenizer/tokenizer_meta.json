@@ -1,6 +1,6 @@
 {
-  "vocab_size": 6502,
-  "sha256": "effb3c27fc74a875785b46df575d2625380ac6d34243d659f6b71ec81df86659",
+  "vocab_size": 8192,
+  "sha256": "7948c252187e6f348a2f8eeb6f006fd85dfbd0878f3ac0a034d3e2eea02ac2c1",
   "special_tokens": [
     "<|bos|>",
     "<|eos|>",

@@ -36,8 +36,12 @@ WORKS = [
      "stories", "Aesop's Fables (a new translation)"),
     ("GITenberg/The-Wind-in-the-Willows_27805", 27805, "willows", "stories",
      "The Wind in the Willows (Kenneth Grahame, 1908)"),
-    ("GITenberg/Grimms-Fairy-Tales_2591", 2591, "grimm", "stories",
-     "Grimms' Fairy Tales (Margaret Hunt translation, 1884)"),
+    ("GITenberg/The-Wonderful-Wizard-of-Oz_55", 55, "oz", "stories",
+     "The Wonderful Wizard of Oz (L. Frank Baum, 1900)"),
+    ("GITenberg/The-Art-of-War_132", 132, "artofwar", "knowledge",
+     "The Art of War (Sun Tzu, tr. Lionel Giles, 1910)"),
+    ("GITenberg/The-Elements-of-Style_37134", 37134, "strunk", "formal",
+     "The Elements of Style (William Strunk Jr., 1918)"),
 ]
 
 START_RE = re.compile(r"\*\*\*\s*START OF (THE|THIS) PROJECT GUTENBERG EBOOK.*\n", re.I)

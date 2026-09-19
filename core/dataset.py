@@ -90,7 +90,7 @@ CODE_PATTERNS = [
         r"\brequire\s*\(", r"\bprint\s*\(", r"\bimport\s+\w+", r"\bclass\s+\w+\s*[:(]",
         r"\bvar\s+\w+\s*=", r"\blet\s+\w+\s*=", r"\bconst\s+\w+\s*=",
         r"\bif\s*\(.+\)\s*\{", r"\bfor\s*\(.+\)\s*\{", r"\bwhile\s*\(.+\)\s*\{",
-        r"\w+==\w+", r"=>", r"\{\s*\}", r";\s*$",
+        r"\w+==\w+", r"=>", r"\{\s*\}",
         r"\binstance\.new\b", r"\bgame\s*:\s*\w+\(", r"\bscript\.Parent\b",
         r"</\w+>", r"<\w+\s+\w+=", r"```",
     )
